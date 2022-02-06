@@ -1,45 +1,38 @@
 """Functions to parse a file containing villager data."""
 
-villager_file = open("villagers.csv")
-
 def all_species(filename):
     """Return a set of unique species in the given file.
-
     Arguments:
         - filename (str): the path to a data file
-
     Return:
         - set[str]: a set of strings
     """
+    file = open(filename)
 
-    # species = set()
-
-    # TODO: replace this with your code
     species = []
-    for line in filename:
+    for line in file:
         items_in_line = line.split('|')
         species.append(items_in_line[1])
 
     return set(species)
+# print(all_species("villagers.csv"))
 
-# print(all_species(villager_file))
 
-
+#----------------------------------------------------------
 
 
 def get_villagers_by_species(filename, search_string="All"):
     """Return a list of villagers' names by species.
-
     Arguments:
         - filename (str): the path to a data file
         - search_string (str): optional, the name of a species
-
     Return:
         - list[str]: a list of names
     """
+    file = open(filename)
 
     villagers = []
-    for line in filename:
+    for line in file:
         items_in_line = line.split('|')
         # villager_name = line[0]
         # species = line[1]
@@ -51,26 +44,20 @@ def get_villagers_by_species(filename, search_string="All"):
             villagers.append(items_in_line[0])
         #assuming user doesn't enter a species that isn't in the list
 
-
-    # TODO: replace this with your code
-
-    return sorted(villagers)
+    return sorted("villagers.csv")
 # print(get_villagers_by_species(villager_file, 'Hamster'))
 
 
-
+#----------------------------------------------------------
 
 def all_names_by_hobby(filename):
     """Return a list of lists containing villagers' names, grouped by hobby.
-
     Arguments:
         - filename (str): the path to a data file
-    
     Return:
         - list[list[str]]: a list of lists containing names
     """
 
-    # TODO: replace this with your code
     file = open(filename)
 
     fitness = []
@@ -99,26 +86,36 @@ def all_names_by_hobby(filename):
 
     return [sorted(fitness), sorted(nature), sorted(education), sorted(music), sorted(fashion), sorted(play)]
 
-print(all_names_by_hobby("villagers.csv"))
+# print(all_names_by_hobby("villagers.csv"))
+
+
+#----------------------------------------------------------
+
 
 def all_data(filename):
     """Return all the data in a file.
-
     Each line in the file is a tuple of (name, species, personality, hobby,
     saying).
-
     Arguments:
         - filename (str): the path to a data file
-
     Return:
         - list[tuple[str]]: a list of tuples containing strings
     """
-
+    file = open(filename)
+    
     all_data = []
 
-    # TODO: replace this with your code
+    for line in file:
+        items_in_line = set(line.rstrip().split('|'))
+        # print(items_in_line)
+        all_data.append(items_in_line)
 
     return all_data
+print(all_data("villagers.csv"))
+
+
+
+#----------------------------------------------------------
 
 
 def find_motto(filename, villager_name):
